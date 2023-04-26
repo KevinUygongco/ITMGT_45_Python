@@ -216,4 +216,32 @@ def eta(first_stop, second_stop, route_map):
     ''' 
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    repetitions = len(route_map)
+    stops = list(route_map.keys())
+    FirstStop = 0
+    SecondStop = 0
+    Time = 0
+    
+    for i in range(repetitions):
+        if first_stop == stops[i][0]:
+            FirstStop = i
+            
+    for i in range(repetitions):
+        if second_stop == stops[i][1]:
+            SecondStop = i
+    
+    if FirstStop <= SecondStop:
+        for j in range(repetitions):
+            if j >= FirstStop and j <= SecondStop:
+                if (FirstStop < SecondStop or FirstStop == SecondStop):
+                    NewDict = route_map[stops[j]]
+                    Time += NewDict['travel_time_mins']
+    
+    if FirstStop > SecondStop:
+        for k in range(repetitions):
+            if k <= SecondStop or k >= FirstStop:
+                NewDict = route_map[stops[k]]
+                Time += NewDict['travel_time_mins']
+                
+    return(Time)
+
