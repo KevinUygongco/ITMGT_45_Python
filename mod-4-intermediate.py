@@ -37,7 +37,14 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    alphabet = list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    letter_number = (ord('@')+(alphabet.index(letter))+shift)
+    if letter_number >= 91:
+        return chr(letter_number - 26)
+    elif letter == " ":
+        return letter
+    else:
+        return chr(letter_number)
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher. 
@@ -59,7 +66,19 @@ def caesar_cipher(message, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    import string
+    alphabet_string = string.ascii_uppercase
+    shifted = alphabet_string[shift:] + alphabet_string[:shift]
+    table = str.maketrans(alphabet_string, shifted)
+    
+    final_message = message.translate(table)
+    
+    return (final_message)
+
+    A = ord("A")
+    return " ".join(
+        chr((ord(char) - A + shift) % 26 + A) if "A" <= char <= "Z" else char for char in message.upper())
+
 
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter. 
@@ -89,7 +108,16 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    alphabet = list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    alphabet_2 = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    letter_number = (ord("@") + (alphabet.index(letter)) + (alphabet_2.index(letter_shift)))
+    if letter_number >= 91:
+        return chr(letter_number -26)
+    elif letter == " ":
+        return letter
+    else:
+        return chr(letter_number)
+    
 
 def vigenere_cipher(message, key):
     '''Vigenere Cipher. 
@@ -122,4 +150,15 @@ def vigenere_cipher(message, key):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    key_length = len(key)
+    key_as_int = [ord(i) for i in key]
+    message_int = [ord(i) for i in message]
+    final_answer = " "
+    for i in range(len(message_int)):
+        if message[i].isalpha():
+            value = (message_int[i] + key_as_int[1 % key_length]) % 26
+            final_answer += chr(value + 65)
+        else:
+            final_answer += message[i]
+            
+    return final_answer
