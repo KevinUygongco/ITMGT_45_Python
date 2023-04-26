@@ -74,7 +74,9 @@ def material_waste(total_material, material_units, num_jobs, job_consumption):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    material_waste = total_material - num_jobs*job_consumption
+    remaining_material = str(material_waste) + material_units
+    return remaining_material
 
 def interest(principal, rate, periods):
     '''Interest.
