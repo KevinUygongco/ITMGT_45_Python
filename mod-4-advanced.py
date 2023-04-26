@@ -41,7 +41,21 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    if to_member not in social_graph:
+        if to_member in social_graph[from_member]["following"]:
+            return "follower"
+        else:
+            return "no relationship"
+    elif to_member in social_graph[from_member]["following"]:
+        if from_member in social_graph[to_member]["following"]:
+            return "friends"
+        else:
+            return "follower"
+    else:
+        if from_member in social_graph[to_member]["following"]:
+            return "followed"
+        else:
+            return "no relationship"
 
 
 def tic_tac_toe(board):
@@ -70,7 +84,106 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    length = len(board)
+    horizontal = [x for x in board]
+    vertical = [x for x in zip(*board)]
+    ul_lr = [board[i][i] for i in range(length)]
+    ll_ur = [board[length-1-i][i] for i in range(length)]
+    
+    if length == 3:
+        if ['O','O','O'] in horizontal:
+            return 'O'
+        elif ['X','X','X'] in horizontal:
+            return 'X'
+        else:
+            if ('O','O','O') in vertical:
+                return 'O'
+            elif ('X','X','X') in vertical:
+                return 'X'
+            else:
+                if ul_lr == ['O','O','O']:
+                    return 'O'
+                elif ul_lr == ['X','X','X']:
+                    return 'X'
+                else:
+                    if ll_ur == ['O','O','O']:
+                        return 'O'
+                    elif ll_ur == ['X','X','X']:
+                        return 'X'
+                    else:
+                        return 'NO WINNER'
+    elif length == 4:
+        if ['O','O','O','O'] in horizontal:
+            return 'O'
+        elif ['X','X','X','X'] in horizontal:
+            return 'X'
+        else:
+            if ('O','O','O','O') in vertical:
+                return 'O'
+            elif ('X','X','X','X') in vertical:
+                return 'X'
+            else:
+                if ul_lr == ['O','O','O','O']:
+                    return 'O'
+                elif ul_lr == ['X','X','X','X']:
+                    return 'X'
+                else:
+                    if ll_ur == ['O','O','O']:
+                        return 'O'
+                    elif ll_ur == ['X','X','X']:
+                        return 'X'
+                    else:
+                        return 'NO WINNER'
+
+                    
+    elif length == 5:
+        if ['O','O','O','O','O'] in horizontal:
+            return 'O'
+        elif ['X','X','X','X','X'] in horizontal:
+            return 'X'
+        else:
+            if ('O','O','O','O','O') in vertical:
+                return 'O'
+            elif ('X','X','X','X','X') in vertical:
+                return 'X'
+            else:
+                if ul_lr == ['O','O','O','O','O']:
+                    return 'O'
+                elif ul_lr == ['X','X','X','X','X']:
+                    return 'X'
+                else:
+                    if ll_ur == ['O','O','O','O','O']:
+                        return 'O'
+                    elif ll_ur == ['X','X','X','X','X']:
+                        return 'X'
+                    else:
+                        return "NO WINNER"
+    elif length == 6:
+        if ['O','O','O','O','O','O'] in horizontal:
+            return 'O'
+        elif ['X','X','X','X','X','X'] in horizontal:
+            return 'X'
+        else:
+            if('O','O','O','O','O','O') in vertical:
+                return 'O'
+            elif ('X','X','X','X','X','X') in vertical:
+                return 'X'
+            else:
+                if ul_lr == ['O','O','O','O','O','O']:
+                    return 'O'
+                elif ul_lr == ['X','X','X','X','X','X']:
+                    return 'X'
+                else:
+                    if ll_ur == ['O','O','O','O','O','O']:
+                        return '6O'
+                    elif ll_ur == ['X','X','X','X','X','X']:
+                        return 'X'
+                    else:
+                        return 'NO WINNER'
+    else:
+        return "board parameter exceeded"
+
+
 
 def eta(first_stop, second_stop, route_map):
     '''ETA. 
